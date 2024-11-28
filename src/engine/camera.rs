@@ -80,7 +80,7 @@ impl Camera {
                     ray.dr = dr;
 
                     // Obtém o objeto mais próximo a colidir com o raio
-                    let mut shape: Option<&Shape> = None;
+                    let mut shape: Option<&Box<dyn Shape>> = None;
                     let mut t = f32::INFINITY;
                     let mut n = Vec3::NULL;
                     for s in &scene.shapes {
@@ -112,7 +112,7 @@ impl Camera {
                         let light_ray = Ray::new(p_i, light.pos - p_i); // raio partindo de p_i até o ponto de luz
                         for s in &scene.shapes {
                             // Tem alguns problemas de iluminação com detecção de colisão consigo mesmo. Não sei ajeitar ainda.
-                            if s == shape { continue; }
+                            // if s == shape { continue; }
 
                             let tl = s.intersects(&light_ray).0;
                             // se tem um objeto ENTRE p_i e a luz (não está atrás da luz ou atrás de p_i (0.0 < tl < 1.0))
