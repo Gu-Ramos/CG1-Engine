@@ -2,7 +2,7 @@ mod engine;
 mod utils;
 mod scenes;
 
-use utils::save_canvas_as_ppm;
+// use utils::save_canvas_as_ppm;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use std::time::{Duration, Instant};
@@ -16,7 +16,7 @@ fn main() {
     let video_subsystem = sdl_context.video().unwrap();
     let mut event_pump = sdl_context.event_pump().unwrap(); // cuida dos eventos como teclado mouse etc.
     let window = video_subsystem // a janela do computador em si
-        .window("CG1 - engine", ((window_width as f32)*scale) as u32, ((window_height as f32)*scale) as u32)
+        .window("CG1 - engine", ((window_width as f64)*scale) as u32, ((window_height as f64)*scale) as u32)
         .position_centered()
         .opengl()
         .build()
@@ -25,7 +25,7 @@ fn main() {
     canvas.set_logical_size(window_width, window_height).unwrap(); // pra fazer upscaling do canvas
 
     camera.draw_scene_to_canvas(&scene, &mut canvas); // desenha a esfera na tela ;)
-    save_canvas_as_ppm(&canvas).unwrap(); // salva o que foi desenhado no canvas como uma imagem .ppm    
+    // save_canvas_as_ppm(&canvas).unwrap(); // salva o que foi desenhado no canvas como uma imagem .ppm    
     
     // main loop do programa
     let mut frame_count = 0; // contador de FPS no terminal

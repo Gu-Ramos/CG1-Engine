@@ -5,7 +5,7 @@ use super::{Material, Shape};
 
 #[derive(Clone, PartialEq)]
 pub struct Cone {
-    pub r: f32, pub h: f32,
+    pub r: f64, pub h: f64,
     pub cb: Vec3, pub v: Vec3,
     pub dc: Vec3,
     pub material: Material,
@@ -15,7 +15,7 @@ pub struct Cone {
 impl Cone {
     #[inline]
     #[must_use]
-    pub fn new(r: f32, h: f32, cb: Vec3, mut dc: Vec3, material: Material, has_base: bool) -> Box<dyn Shape> {
+    pub fn new(r: f64, h: f64, cb: Vec3, mut dc: Vec3, material: Material, has_base: bool) -> Box<dyn Shape> {
         dc = dc.normalize();
         Box::new( Self { r, h, cb, v: cb + dc*h, dc, material, has_base } )
     }
@@ -23,8 +23,8 @@ impl Cone {
 
 impl Shape for Cone {
     #[must_use]
-    fn intersects(&self, r: &Ray) -> (f32, Vec3) {
-        let mut t = f32::INFINITY;
+    fn intersects(&self, r: &Ray) -> (f64, Vec3) {
+        let mut t = f64::INFINITY;
         let mut n = Vec3::NULL;
 
         // Check superfície cônica
@@ -95,7 +95,7 @@ impl Shape for Cone {
             }
         }
 
-        if t == f32::INFINITY { t = -t; }
+        if t == f64::INFINITY { t = -t; }
         (t, n * -n.dot(r.dr).signum())
     }
 

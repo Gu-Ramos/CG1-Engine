@@ -18,7 +18,7 @@ pub fn vec_to_color(v: Vec3) -> Color {
 #[inline]
 /// Converte um objeto Color do SDL em um vetor 3D
 pub fn color_to_vec(c: Color) -> Vec3 {
-    Vec3::new(c.r as f32, c.g as f32, c.b as f32)
+    Vec3::new(c.r as f64, c.g as f64, c.b as f64)
 }
 
 // salva o canvas como uma imagem .ppm

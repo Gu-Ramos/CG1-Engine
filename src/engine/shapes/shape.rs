@@ -3,7 +3,6 @@ use super::Material;
 use super::super::Ray;
 use crate::utils::Vec3;
 
-// #[derive(Clone, PartialEq)]
 /// Enum Shape que "encapsula" objetos diferentes (esfera, plano)
 pub trait Shape : Sync {
     #[must_use]
@@ -14,5 +13,5 @@ pub trait Shape : Sync {
     #[must_use]
     /// Retorna o ponto de interseção (de distância positiva) mais próximo entre um objeto e um raio `r` \
     /// (`-INFINITY` se não há interseção)
-    fn intersects(&self, r: &Ray) -> (f32, Vec3);
+    fn intersects(&self, r: &Ray) -> (f64, Vec3);
 }
